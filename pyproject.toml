@@ -1,0 +1,85 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "synap"
+version = "0.1.0"
+description = "Sistema de geração de dados sintéticos com validação estatística, causal, lógica, de utilidade e de privacidade — em 8 módulos inspirados em neurociência."
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.11"
+authors = [
+    { name = "S.Y.N.A.P. contributors" },
+]
+keywords = [
+    "synthetic-data",
+    "privacy",
+    "differential-privacy",
+    "data-generation",
+    "causal-inference",
+    "machine-learning",
+    "data-privacy",
+    "synthetic-data-generation",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Security",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+dependencies = [
+    "pydantic>=2.0,<3.0",
+    "pandas>=2.0",
+    "numpy>=1.24",
+    "scipy>=1.10",
+    "pyyaml>=6.0",
+    "networkx>=3.0",
+    "scikit-learn>=1.3",
+    "matplotlib>=3.7",
+    "pypdf>=5.0",
+    "flask>=3.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4",
+    "pytest-cov>=4.1",
+    "ruff>=0.4",
+]
+
+[project.urls]
+Homepage = "https://github.com/synap-project/synap"
+Documentation = "https://github.com/synap-project/synap/blob/main/PROJECT_NARRATIVE.md"
+Repository = "https://github.com/synap-project/synap"
+Changelog = "https://github.com/synap-project/synap/blob/main/CHANGELOG.md"
+"Bug Tracker" = "https://github.com/synap-project/synap/issues"
+
+[project.scripts]
+synap = "synap.main:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 130
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+ignore = ["UP042"]  # (str, Enum) é o padrão deliberado do projeto (compatibilidade com pydantic)
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["E501"]  # linhas de teste com dados inline podem exceder o limite de leitura

@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "Se usar o S.Y.N.A.P. em trabalho académico ou técnico, por favor cite-o da seguinte forma."
+title: "S.Y.N.A.P.: Sistema de Geração de Dados Sintéticos com Validação Estatística, Causal, Lógica, de Utilidade e de Privacidade"
+version: 0.1.0
+date-released: 2026-07-09
+license: Apache-2.0
+repository-code: "https://github.com/synap-project/synap"
+type: software
+keywords:
+  - synthetic data
+  - privacy
+  - causal inference
+  - differential privacy
+  - data generation
+authors:
+  - name: "S.Y.N.A.P. contributors"
