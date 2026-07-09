@@ -1,0 +1,57 @@
+"""Auditor de Utilidade, Privacidade e Valor Prático — Módulo 8 do S.Y.N.A.P."""
+
+from .auditor import (
+    DEFAULT_DCR_RATIO_THRESHOLD,
+    DEFAULT_MIA_AUC_TOLERANCE,
+    DEFAULT_UTILITY_RETENTION_THRESHOLD,
+    MIN_HOLDOUT_SIZE,
+    assess_privacy,
+    assess_utility,
+    dcr_assessment,
+    distance_to_closest_record,
+    exact_match_assessment,
+    generate_readiness_report,
+    membership_inference_risk,
+    nndr_assessment,
+    run_auditor,
+    select_target_columns,
+)
+from .exceptions import AuditorError, AuditorValidationError, InsufficientHoldoutError
+from .models import (
+    AuditorOutput,
+    DCRAssessment,
+    ExactMatchAssessment,
+    MembershipInferenceAssessment,
+    NNDRAssessment,
+    PrivacyAssessment,
+    UtilityAssessment,
+    UtilityTaskResult,
+)
+
+__all__ = [
+    "DEFAULT_DCR_RATIO_THRESHOLD",
+    "DEFAULT_MIA_AUC_TOLERANCE",
+    "DEFAULT_UTILITY_RETENTION_THRESHOLD",
+    "MIN_HOLDOUT_SIZE",
+    "AuditorError",
+    "AuditorOutput",
+    "AuditorValidationError",
+    "DCRAssessment",
+    "ExactMatchAssessment",
+    "InsufficientHoldoutError",
+    "MembershipInferenceAssessment",
+    "NNDRAssessment",
+    "PrivacyAssessment",
+    "UtilityAssessment",
+    "UtilityTaskResult",
+    "assess_privacy",
+    "assess_utility",
+    "dcr_assessment",
+    "distance_to_closest_record",
+    "exact_match_assessment",
+    "generate_readiness_report",
+    "membership_inference_risk",
+    "nndr_assessment",
+    "run_auditor",
+    "select_target_columns",
+]
