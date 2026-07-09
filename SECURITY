@@ -1,0 +1,52 @@
+# Security Policy
+
+## Reporting a Vulnerability
+
+If you find a security or privacy vulnerability in S.Y.N.A.P. — for example, a scenario where Module 8 (Auditor) improperly approves privacy, or a way to bypass Module 4/7's ASP validation — **do not open a public issue**.
+
+Report privately:
+
+- Open a [GitHub Security Advisory](../../security/advisories/new)
+in this repository (preferred — keep the report private until there is a fix), or
+- Contact the maintainers through the security address listed in the repository's profile.
+
+Include as much as possible:
+
+- A clear description of the problem and the potential impact (e.g., risk of re-identification, circumventing a business rule, false privacy negative).
+
+- Steps to reproduce, ideally with a minimal example (schema + synthetic data, never real third-party data). - The affected version of S.Y.N.A.P.
+
+## What to expect
+
+- Confirmation of receipt within 5 business days.
+
+- An initial severity assessment within 10 business days.
+
+- Coordinated correction and disclosure as soon as possible — the timeframe
+
+depends on the severity and complexity of the correction.
+
+## Scope
+
+We consider security/privacy vulnerabilities, among others:
+
+- Any path where generated synthetic data allows
+re-identification of real individuals without Module 8 flagging it.
+
+- Bypassing the validation of business rules (ASP) of Module 4 or Module 7.
+
+- Flaws in the deserialization of schemas or contracts that allow
+arbitrary code execution.
+
+- Dependencies on third parties with known vulnerabilities that affect
+the system's operation.
+
+Statistical quality issues that do not involve a risk of privacy or security (e.g., a loyalty metric could be improved) should be reported as normal issues — see `CONTRIBUTING.md`.
+
+## Best practices for S.Y.N.A.P. users
+
+- Never use real production data without a proper compliance assessment (GDPR, HIPAA, or applicable regulations) — S.Y.N.A.P. is a tool to support this assessment, not a substitute for it.
+
+- Treat the `training_reference` (Module 8) with the same care as the original real data — it is literally a sample of that data.
+
+- Always review the `relatorio_prontidao.pdf` before releasing a synthetic dataset outside of a controlled environment, even if the verdict is "approved".
