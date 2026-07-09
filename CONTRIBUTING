@@ -1,0 +1,89 @@
+# Contributing to S.Y.N.A.P.
+
+Thank you for your interest in contributing. This document describes how to prepare the development environment, the project's code standards, and the process for submitting changes.
+
+## Preparing the environment
+
+```bash
+git clone https://github.com/synap-project/synap.git
+cd synap
+python3 -m venv .venv
+source .venv/bin/activate # Windows: .venv\Scripts\activate
+pip install -e ".[dev]"
+
+```
+
+This installs the package in editable mode (`pip install -e .`), plus the development dependencies (`pytest`, `pytest-cov`, `ruff`).
+
+## Running the tests
+
+
+```bash
+pytest # complete suite (170+ tests)
+pytest tests/neocortex -v # only Module 1
+pytest tests/test_integration.py -v # only end-to-end integration
+pytest --cov=synap --cov-report=html # with coverage
+
+```
+
+All tests must pass before any PR is accepted. If you add a new function or behavior, add the corresponding test in the same PR — not after.
+
+## Code Style
+
+```bash
+ruff check src tests # linting
+ruff check --fix src tests # automatic correction of what is possible
+
+```
+
+- Full type hints in all public functions.
+
+- Google-style docstrings (see any existing module as an example).
+
+- Function names, variables, and commit messages in Portuguese from Portugal, consistent with the rest of the codebase — this is a deliberate choice of the project, not a historical accident.
+
+- Configuration constants at the top of the module, in uppercase, never
+
+hardcoded in the middle of the logic.
+
+- Module-specific exceptions (`ModuleError`, `ModuleValidationError`),
+
+never silent `except Exception`.
+
+## Architecture — before modifying a module
+
+S.Y.N.A.P. has 8 modules, each with a unique responsibility and
+a clear public interface boundary (`src/synap/<module>/__init__.py`
+lists exactly what that module exposes to others). Before
+modifying a module:
+
+1. Read the `PROJECT_NARRATIVE.md` to understand the module's role in the
+set.
+
+2. Review the existing tests for that module in `tests/<module>/` —
+
+they document the expected behavior as well as the code.
+
+3. If the change modifies a public interface (a function exported in `__init__.py`), check all downstream modules that import it (`grep -rn "from synap.<module>" src/`).
+
+## How to submit a change
+
+1. Open an issue describing the problem or proposal before writing code, if the change is larger than a point fix.
+
+2. Create a branch from `main`: `git checkout -b feature/short-name`.
+
+3. Write the code and tests.
+
+4. Run `pytest` and `ruff check` locally — CI runs exactly the same commands.
+
+5. Open a Pull Request describing what changes and why. If fixing a bug, include the test that reproduces it before the fix.
+
+## Report bugs and suggest features
+
+Use the templates in `.github/ISSUE_TEMPLATE/`. For security or privacy vulnerabilities, **do not open a public issue** — follow the process in `SECURITY.md`.
+
+## Code of Conduct
+
+This project adopts the [Contributor Covenant](CODE_OF_CONDUCT.md).
+
+Participation implies agreement to abide by it.
