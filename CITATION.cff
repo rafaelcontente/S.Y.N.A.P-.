@@ -1,6 +1,6 @@
 cff-version: 1.2.0
-message: "Se usar o S.Y.N.A.P. em trabalho académico ou técnico, por favor cite-o da seguinte forma."
-title: "S.Y.N.A.P.: Sistema de Geração de Dados Sintéticos com Validação Estatística, Causal, Lógica, de Utilidade e de Privacidade"
+message: "If you use S.Y.N.A.P. in academic or technical work, please cite it as follows."
+title: "S.Y.N.A.P.: Synthetic Data Generation System with Statistical, Causal, Logical, Utility, and Privacy Validation"
 version: 0.1.0
 date-released: 2026-07-09
 license: Apache-2.0
