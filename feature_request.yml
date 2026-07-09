@@ -1,0 +1,42 @@
+name: Propor uma funcionalidade
+description: Sugerir uma melhoria ou novo comportamento para o S.Y.N.A.P.
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Que problema resolve
+      description: Que limitação atual isto endereça? Ver PROJECT_NARRATIVE.md e a Secção 9 do Relatório de Validação para limitações já conhecidas.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposta
+      description: Como imagina que isto funcionaria? Se envolver um módulo específico, refira qual.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternativas consideradas
+
+  - type: dropdown
+    id: module
+    attributes:
+      label: Módulo(s) principal(is) afetado(s)
+      multiple: true
+      options:
+        - "Módulo 1 — Neocórtex Percetual"
+        - "Módulo 2 — Hipocampo"
+        - "Módulo 3 — Expansor"
+        - "Módulo 4 — Hipotálamo"
+        - "Módulo 5 — Núcleo Cognitivo"
+        - "Módulo 6 — Homeostase"
+        - "Módulo 7 — Compilador"
+        - "Módulo 8 — Auditor"
+        - "Orquestrador (synap.main)"
+        - "App web"
+        - "Outro / vários"
