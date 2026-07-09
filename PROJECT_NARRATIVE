@@ -1,0 +1,157 @@
+# PROJECT_NARRATIVE — S.Y.N.A.P.
+
+*Why it exists, what it delivers, and why it's different from what already exists.*
+
+---
+
+## I. The problem that nobody fully solves
+
+Every organization that works with sensitive data — a bank, an insurance company, a hospital, a city council — has faced the same contradiction for a decade: the best data to train a model, test a system, or share with a partner is precisely the data that law, ethics, and common sense prohibit from moving freely.
+
+GDPR in Europe, HIPAA in the US, and a growing number of sectoral regulations are not bureaucratic obstacles — they are the correct response to a real risk: each row of a real dataset is a person.
+
+The obvious answer — "generating synthetic data" — has existed as a market category for several years, and has grown even faster from 2023-2025, as the scarcity of real data to train AI models became a crisis itself (Nvidia's acquisition of Gretel in 2025, for a value exceeding its last valuation of $320 million, is just the most visible symptom of this).
+
+But generating data that "looks" real is the easy part. The question that most tools don't answer rigorously is: **do they look statistically accurate, or are they also safe, and are they also useful for the task that someone will actually do with them?**
+
+It is from this gap — between "looks good" and "is proven" — that S.Y.N.A.P. is born.
+
+
+## II. Three conditions, not one
+
+Most synthetic data tools were built around a generative model — a GAN, a VAE, more recently an autoregressive transformer — trained to minimize a single distance between the synthetic and real distribution. It's a well-defined optimization problem, and modern models are very good at solving it. What's left out isn't the statistics — it's everything else:
+
+1. **Statistical similarity doesn't prove usefulness.** A dataset can reproduce means, deviations, and correlations almost perfectly and still be useless for training a real business model if the concrete predictive relationship between the columns that matter for that task doesn't survive generation.
+
+2. **Statistical similarity doesn't prove privacy — it can be the opposite.** A sufficiently expressive generative model can memorize and reproduce almost exact rows from the training set.
+
+In that case, the "better" the model, the greater the risk of re-identification. This is rarely measured by default; Most platforms show a statistical quality report and call it "privacy" without actually testing it against real data.
+
+3. **Neither proves practical value.** A buyer, a regulator, or a doctor in a hospital isn't going to read a Kullback-Leibler divergence.
+
+They need an answer in human language:
+
+*This dataset can be used for what I need, and it won't expose anyone?*
+
+
+S.Y.N.A.P. was designed, from the first line, to answer all three—not as an afterthought, but as the very definition of "ready to go."
+
+
+III. An Architecture Built Like a Brain, Not a Pipeline
+
+Most synthetic data systems are a linear pipeline:
+scheme → model → sample → end. S.Y.N.A.P. was built, module
+by module, more like a nervous system than an assembly line — because the problem it solves is not just "generating a similar sample," it's "generating, validating, correcting, and auditing simultaneously, without waiting until the end to discover that something went wrong."
+
+
+- **Perceptual Neocortex** (Module 1) anchors the system to reality:
+it transforms real data (or explicit manual parameters, never hidden) into a Statistical Contract — distributions, correlations, tolerances — which becomes the single source of truth for all subsequent modules. - **Hippocampus** (Module 2) learns or validates the causal structure (a
+DAG) behind the data, and generates the initial seed that respects these
+relationships — not just the marginal ones of each column.
+
+- **Expander + Hypothalamus + Cognitive Core** (Modules 3, 4, and 5) form what we call the *two-way cognitive loop*: each candidate row goes through statistical filters (Mahalanobis distance, plausibility score), a strict logical validator (business rules, no exceptions), and an autoencoder that detects artifacts due to reconstruction loss — and each rejection immediately generates a signal that corrects the following choices within the same batch. It's not "generate and then filter"; it's learning to avoid the error while it's still happening.
+
+- **Homeostasis** (Module 6) prevents what the literature calls *mode collapse*: it monitors distributional divergence and diversity (entropy) throughout the entire process, and actively reinforces underrepresented regions — the system cannot converge to a narrow niche just because it is easier to generate.
+
+- **Compiler** (Module 7) is the first gatekeeper: it revalidates 100% of the rules, trains a Twin Model to prove, empirically, that the predictive performance in the synthetic model approximates the performance in the real model, and only releases the final CSV if the Fidelity Index exceeds a threshold — otherwise, it blocks and explains why.
+
+- **Auditor** (Module 8) is the second gatekeeper, and what is missing in almost all tools on the market: it measures utility in several tasks (not just one), and seriously tests privacy — *Distance to Closest Record*,
+
+*Nearest-Neighbour Distance Ratio*, exact match, and a
+
+Membership Inference Attack. Privacy has **veto power** over the output, even if utility and statistical accuracy are excellent. None of the other seven modules can single-handedly approve what the Auditor disapproves.
+
+
+This design is not aesthetic. Each module exists because, somewhere
+point, the question "what if this goes wrong here?" had an answer
+concrete and testable — and the tests that accompany each module (more than
+160, in eight sets) exist precisely to prove this, not
+to decorate the repository.
+
+##IV. What the system delivers, specifically
+
+At the end of a full run, S.Y.N.A.P. delivery:
+
+- **`dataset_final.csv`** — the synthetic dataset, with headers, types 
+and UTF-8 encoding, ready to use.
+- **`relatorio_confianca.pdf`** — histograms, correlation matrix, 
+the strangest artifacts identified, and the Model metric 
+Twin, in language that a non-specialist can follow.
+- **`relatorio_prontidao.pdf`** — the verdict of multi-tasking utility 
+and privacy, with explicit justification for any blocking.
+- **An actionable diagnostic when something gets stuck** — never an error 
+generic. "Loyalty Index 0.62 < 0.90; reason: the relationship between 
+return and risk did not survive the generation" is a phrase that someone 
+Without statistical training, you can act based on it.
+- **A presentation website** (`site/index.html`), futuristic and 
+excited, with the pipeline of the eight modules and the numbers from the Report 
+Validation Tool, to share the project without requiring installation.
+
+## V. What problems does it solve in practice
+
+- A data science team at an insurance company needs to test a 
+new risk subscription model without waiting months for approval 
+access to real customer data.
+- A hospital wants to share a research dataset with a 
+partner university without running the risk of re-identifying patients.
+- A fintech needs to generate realistic test data for its 
+staging environment, without replicating production (and without violating your 
+own privacy-by-design commitment).
+- A regulator wants to understand, in current Portuguese, whether a dataset 
+synthetic material presented to you is safe enough to be 
+used as proof of compliance — don't want to read a table of 
+p-values without context.
+
+
+In all these cases, what existing tools lack is not
+generating similar data — it's the **documented and verifiable** proof that this data is useful and safe for its intended use.
+
+## VI. How it compares to what already exists
+
+There's no shame in comparing: the synthetic data market has mature and well-built tools. The difference with S.Y.N.A.P. is not a "better generative model" — it's a different architectural philosophy.
+
+| | **Typical market approach** | **S.Y.N.A.P.** |
+
+|---|---|---|
+
+| **Generating engine** | A single model (GAN, VAE, or a tabular autoregressive transformer) trained to minimize a global statistical distance | Eight specialized modules, with a statistical + symbolic "dual brain" validating each row in real time |
+
+| **Causal structure** | Generally absent or implicit in the model; Few tools expose or validate an explicit DAG | Explicit DAG, adjusted by d-separation tests, with automatic detection of missing edges |
+| **Business Rules** | Typically post-processed (filter after generating) or absent | Logical validation (ASP) integrated into the generation cycle itself, with induction of new rules from approved data |
+| **Privacy** | Often a statistical quality report presented as "privacy"; not always tested against real data | DCR, NNDR, exact match and Membership Inference Attack, with **veto** power over statistical fidelity |
+| **Utility** | A performance metric, usually on a single target task | TSTR/TRTR across multiple tasks, with aggregate utility retention |
+| **Diversity / Model Collapse** | Known risk of GANs/VAEs; rarely explicitly monitored after training | Dedicated module (Homeostasis) that continuously measures entropy and divergence and corrects in real time |
+
+**Transparency** | Proprietary engine, "black box" on most commercial platforms | Open and documented architecture, module by module, with public tests |
+
+**Explainable Blocking** | Usually absent — the tool generates and delivers | Automatic blocking with readable diagnostics, when fidelity or privacy are not sufficient |
+
+
+Tools like **MOSTLY AI** (Vienna, founded in 2017, now also
+associated with Synthea) and **Gretel** (acquired by Nvidia in 2025) are mature commercial platforms with good differential privacy capabilities and PII detection — but they operate as a closed service, revolving around a single generative engine. The **Synthetic Data Vault (SDV)** and the **CTGAN** library, on the open-source side, are excellent academic starting points and have wide adoption — but, as the ecosystem itself recognizes, they do not include privacy or causal/logical validation built-in by default; that is the responsibility of the user. Rule-based simulators (like Synthea, in the healthcare domain) solve a narrower problem well — generating plausible records according to hand-coded clinical logic — but they do not learn the statistics of a real dataset nor produce an auditable privacy verdict. S.Y.N.A.P. doesn't necessarily replace these tools in all scenarios—but it occupies a space that none of them fully cover: generating, validating causally and logically, and **proving** (not just generating) utility and privacy, in a single end-to-end readable system.
+
+## VII. Where Honesty Matters More Than Enthusiasm
+
+This document would not be true to the very spirit of the project if it didn't say where it is still limited:
+
+- Causal learning (PC-algorithm) is simplified—it doesn't fully implement Meek's rules.
+
+- The rule induction engine (ILP) is restricted to a univariate template; it is not a generic ILP.
+
+- No system—this one included—can claim privacy without testing it against real data; when no real holdout is available, S.Y.N.A.P. refuses to pretend it has evaluated, and says so explicitly.
+
+## VIII. Where is it going?
+
+The condition for being "truly disruptive" wasn't rhetoric: it was an
+acceptance criterion. A system that proves statistical utility,
+privacy security, and practical value—all three, not just one—in
+regulated sectors, ceases to be "just another synthetic data tool" and becomes a trusted infrastructure. That's where
+S.Y.N.A.P. was built to point, one module at a time.
+
+## IX. An open product, not a closed proof of concept
+
+The condition for being "truly disruptive"—proving utility, privacy, and
+practical value—is only credible if it can be scrutinized by anyone,
+not just stated by its authors. That's why S.Y.N.A.P. This is
+distributed under the [Apache 2.0 License](./LICENSE), with the code, the 170 automated tests, and the Validation and Reliability Report itself open for inspection, reproduction, and contestation — see `CONTRIBUTING.md` to propose changes, and `validation/README.md` to reproduce each issue of this document from scratch.
+
