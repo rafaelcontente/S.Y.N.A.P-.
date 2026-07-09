@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg
+build/
+dist/
+.coverage
+coverage.xml
+htmlcov/
+
+# Ambientes virtuais
+.venv/
+venv/
+env/
+
+# Saídas geradas pelo sistema
+outputs/
+*.csv
+!schema*.csv
+!validation/anchor.csv
+relatorio_confianca*.pdf
+dataset_final*.csv
+!validation/Relatorio_Validacao_Fiabilidade_SYNAP.pdf
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+*.swp
