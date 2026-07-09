@@ -1,0 +1,59 @@
+name: Reportar um bug
+description: Algo no S.Y.N.A.P. não se comporta como esperado.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Para vulnerabilidades de segurança ou de privacidade (ex.: um
+        cenário em que o Módulo 8 aprova privacidade indevidamente),
+        **não use este template** — siga o processo em `SECURITY.md`.
+
+  - type: input
+    id: module
+    attributes:
+      label: Módulo afetado
+      description: "Ex.: Módulo 2 (Hipocampo), Módulo 7 (Compilador), orquestrador, app web"
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: O que aconteceu
+      description: Descrição clara do comportamento observado.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: O que esperava que acontecesse
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Como reproduzir
+      description: Passos, esquema/configuração usada (sem dados reais de terceiros), e comando executado.
+      placeholder: |
+        1. Esquema usado: ...
+        2. Comando: synap --schema ... --target-rows ...
+        3. Erro/comportamento observado: ...
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Versão do S.Y.N.A.P.
+      description: "`python -c \"import synap; print(synap.__version__)\"`"
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Ambiente
+      placeholder: "SO, versão do Python, versão das dependências relevantes"
