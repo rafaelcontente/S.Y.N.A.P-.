@@ -1,0 +1,24 @@
+colunas:
+  divida:
+    minimo: 0
+    tipo: numerico
+  idade:
+    maximo: 80
+    minimo: 18
+    tipo: numerico
+  rendimento:
+    minimo: 0
+    tipo: numerico
+  risco:
+    categorias:
+    - baixo
+    - medio
+    - alto
+    tipo: categorico
+  score_credito:
+    maximo: 850
+    minimo: 300
+    tipo: numerico
+regras:
+- rendimento > 0
+- divida >= 0

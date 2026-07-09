@@ -1,0 +1,285 @@
+{
+  "n_real": 2200,
+  "n_anchor": 1496,
+  "n_holdout": 704,
+  "n_seed": 5000,
+  "n_generated": 4500,
+  "true_corr": {
+    "idade-rendimento": 0.42,
+    "rendimento-divida": -0.35,
+    "rendimento-score_credito": 0.55,
+    "divida-score_credito": -0.5
+  },
+  "dag_edges": [
+    [
+      "idade",
+      "rendimento"
+    ],
+    [
+      "rendimento",
+      "divida"
+    ],
+    [
+      "rendimento",
+      "score_credito"
+    ],
+    [
+      "divida",
+      "score_credito"
+    ],
+    [
+      "score_credito",
+      "risco"
+    ]
+  ],
+  "seed_report": {
+    "erro_medio_absoluto": 0.04264669853721353,
+    "erro_maximo_absoluto": 0.09539858073109214,
+    "n_ajustes": 0
+  },
+  "rejeicoes_agregadas": {
+    "distancia_mahalanobis": 195,
+    "score_plausibilidade": 0,
+    "rejeicao_logica_asp": 0,
+    "artefacto_autoencoder": 10,
+    "tentativas_esgotadas": 0
+  },
+  "artefactos_por_lote": [
+    2,
+    1,
+    2,
+    2,
+    3
+  ],
+  "homeostase_por_lote": [
+    {
+      "lote": 1,
+      "divergencia_global": 0.05323545944790117,
+      "estado": "atencao",
+      "colunas": {
+        "divida": 0.025261581453765447,
+        "idade": 0.013103547157268913,
+        "rendimento": 0.013607832478697901,
+        "score_credito": 0.005595954382989654
+      },
+      "entropias": {
+        "risco": 0.9255357258749365
+      }
+    },
+    {
+      "lote": 2,
+      "divergencia_global": 0.054457311017194865,
+      "estado": "atencao",
+      "colunas": {
+        "divida": 0.027177895398999175,
+        "idade": 0.009237668272521593,
+        "rendimento": 0.008978013848420674,
+        "score_credito": 0.004720485543161068
+      },
+      "entropias": {
+        "risco": 0.9263575659397559
+      }
+    },
+    {
+      "lote": 3,
+      "divergencia_global": 0.048189969821116646,
+      "estado": "normal",
+      "colunas": {
+        "divida": 0.02532423621629598,
+        "idade": 0.006561990606646417,
+        "rendimento": 0.008110708039983927,
+        "score_credito": 0.00449431416582724
+      },
+      "entropias": {
+        "risco": 0.9225079871326984
+      }
+    },
+    {
+      "lote": 4,
+      "divergencia_global": 0.06694035601044905,
+      "estado": "atencao",
+      "colunas": {
+        "divida": 0.025377143083716303,
+        "idade": 0.004957606679661164,
+        "rendimento": 0.009401920220447946,
+        "score_credito": 0.0040294569466777785
+      },
+      "entropias": {
+        "risco": 0.9265243563295417
+      }
+    },
+    {
+      "lote": 5,
+      "divergencia_global": 0.0593432078977528,
+      "estado": "atencao",
+      "colunas": {
+        "divida": 0.02913497947079957,
+        "idade": 0.0025740407462578885,
+        "rendimento": 0.00854580958995299,
+        "score_credito": 0.003855290123739308
+      },
+      "entropias": {
+        "risco": 0.9317535400484581
+      }
+    }
+  ],
+  "derivas_causais": [
+    {
+      "lote": 1,
+      "n_linhas": 900,
+      "derivas": 0
+    },
+    {
+      "lote": 2,
+      "n_linhas": 1800,
+      "derivas": 0
+    },
+    {
+      "lote": 3,
+      "n_linhas": 2700,
+      "derivas": 0
+    },
+    {
+      "lote": 4,
+      "n_linhas": 3600,
+      "derivas": 0
+    },
+    {
+      "lote": 5,
+      "n_linhas": 4500,
+      "derivas": 0
+    }
+  ],
+  "n_regras_ilp": 0,
+  "compilador": {
+    "asp_total": 4500,
+    "asp_aprovadas": 4500,
+    "asp_rejeitadas": 0,
+    "coluna_alvo": "risco",
+    "metrica_nome": "AUC",
+    "valor_sintetico": 0.9998667162135195,
+    "valor_real": 0.9999329039184112,
+    "indice_fidelidade": 0.9999338078538748,
+    "liberado": true,
+    "diagnostico": null
+  },
+  "auditor": {
+    "tarefas": [
+      {
+        "coluna_alvo": "risco",
+        "metrica_nome": "AUC",
+        "tstr": 0.9993290391841118,
+        "trtr": 0.9999329039184112,
+        "retencao": 0.9993960947460244
+      },
+      {
+        "coluna_alvo": "score_credito",
+        "metrica_nome": "RMSE",
+        "tstr": 138.66781789184785,
+        "trtr": 70.04186035954565,
+        "retencao": 0.5051053764628638
+      }
+    ],
+    "retencao_media": 0.7522507356044441,
+    "utilidade_aprovada": false,
+    "dcr_sintetico_real": 0.481379415799032,
+    "dcr_real_real": 0.4999506858723662,
+    "dcr_razao": 0.9628537961880598,
+    "dcr_linhas_suspeitas": 0,
+    "nndr_sintetico": 0.8434428850399525,
+    "nndr_real": 0.8186308355859946,
+    "correspondencias_exactas": 0,
+    "mia_avaliavel": true,
+    "mia_auc": 0.537202208171925,
+    "mia_seguro": true,
+    "privacidade_aprovada": true,
+    "privacidade_motivo": null
+  },
+  "ks_results": {
+    "idade": {
+      "statistic": 0.03681439393939394,
+      "p_value": 0.371252611786845,
+      "indistinguivel": true
+    },
+    "rendimento": {
+      "statistic": 0.06258585858585859,
+      "p_value": 0.016169636413053565,
+      "indistinguivel": false
+    },
+    "divida": {
+      "statistic": 0.1012260101010101,
+      "p_value": 6.935865305439175e-06,
+      "indistinguivel": false
+    },
+    "score_credito": {
+      "statistic": 0.06138005050505051,
+      "p_value": 0.019418753929778834,
+      "indistinguivel": false
+    }
+  },
+  "chi2": {
+    "statistic": 72.04906346778634,
+    "p_value": 2.263313192266472e-16
+  },
+  "recovered_corr": {
+    "idade-rendimento": {
+      "verdadeiro": 0.42,
+      "real_amostrado": 0.4326752369563699,
+      "sintetico": 0.4285705695306664,
+      "erro_absoluto": 0.008570569530666428
+    },
+    "rendimento-divida": {
+      "verdadeiro": -0.35,
+      "real_amostrado": -0.352254180847047,
+      "sintetico": -0.32637707999670545,
+      "erro_absoluto": 0.023622920003294523
+    },
+    "rendimento-score_credito": {
+      "verdadeiro": 0.55,
+      "real_amostrado": 0.551817345294512,
+      "sintetico": 0.553546259433687,
+      "erro_absoluto": 0.0035462594336869158
+    },
+    "divida-score_credito": {
+      "verdadeiro": -0.5,
+      "real_amostrado": -0.5293022024178935,
+      "sintetico": -0.49411492219221026,
+      "erro_absoluto": 0.00588507780778974
+    }
+  },
+  "associacao_categoria_numerica": {
+    "real": 0.8145284962119439,
+    "com_dag": 0.8045618439283952,
+    "sem_dag": 0.00041068670428924455
+  },
+  "log": [
+    "[    0.0s] A construir o dataset de referência (processo gerador conhecido)...",
+    "[    0.0s] Dataset de referência: 2200 linhas (1496 âncora, 704 holdout nunca visto)",
+    "[    0.0s] MÓDULO 1 — a construir o Contrato Estatístico...",
+    "[    0.0s] Contrato construído: fonte=ContractSource.REAL_CSV, 6 correlações, n=1496",
+    "[    0.0s] MÓDULO 2 — a validar a DAG e a gerar a semente...",
+    "[    0.1s] DAG: 5 arestas — [('idade', 'rendimento'), ('rendimento', 'divida'), ('rendimento', 'score_credito'), ('divida', 'score_credito'), ('score_credito', 'risco')]",
+    "[    0.1s] Semente: 5000 linhas, erro médio de correlação=0.0426, ajustes=0",
+    "[    0.1s] Lote 1/5 — Núcleo (M3+M4+M5)...",
+    "[   12.6s]   -> 900 linhas aprovadas; homeostasia=atencao; artefactos=2",
+    "[   12.6s] Lote 2/5 — Núcleo (M3+M4+M5)...",
+    "[   26.1s]   -> 900 linhas aprovadas; homeostasia=atencao; artefactos=1",
+    "[   26.1s] Lote 3/5 — Núcleo (M3+M4+M5)...",
+    "[   40.9s]   -> 900 linhas aprovadas; homeostasia=normal; artefactos=2",
+    "[   40.9s] Lote 4/5 — Núcleo (M3+M4+M5)...",
+    "[   57.8s]   -> 900 linhas aprovadas; homeostasia=atencao; artefactos=2",
+    "[   57.8s] Lote 5/5 — Núcleo (M3+M4+M5)...",
+    "[   75.4s]   -> 900 linhas aprovadas; homeostasia=atencao; artefactos=3",
+    "[   75.4s] Dataset final gerado: 4500 linhas",
+    "[   75.4s] MÓDULO 7 — validação ASP final + Modelo Gémeo...",
+    "[   76.0s] Compilador: ASP aprovado=True, Índice de Fidelidade=0.9999, liberado=True",
+    "[   76.0s] MÓDULO 8 — auditoria de utilidade e privacidade...",
+    "[   76.2s] Auditor: utilidade aprovada=False (retenção média=0.752), privacidade aprovada=True",
+    "[   76.2s] Verificação honesta: efeito de fornecer (ou não) a DAG na ligação categórica-numérica...",
+    "[   76.2s] Associação risco~score_credito (eta²): real=0.815, com DAG=0.805, sem DAG=0.000",
+    "[   76.2s] Testes adicionais: Kolmogorov-Smirnov, Qui-quadrado, recuperação da estrutura verdadeira...",
+    "[   76.2s] KS tests: 1/4 colunas indistinguíveis (p>0.05)",
+    "[   76.2s] Qui-quadrado risco: p=0.0000",
+    "[   76.2s] A guardar resultados..."
+  ]
+}
